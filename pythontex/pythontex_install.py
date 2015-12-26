@@ -141,60 +141,10 @@ else:
 
 
 # Get installation location from user
-texmf_vars = [texmf_dist, texmf_local, texmf_home]
-message = '''
-          Choose an installation location.
-          
-          TEXMFDIST is a good choice if you want to update PythonTeX 
-          in the future using your TeX distribution's package manager
-          (assuming that is supported).
-          
-            1. TEXMFDIST
-                 {0}
-            2. TEXMFLOCAL
-                 {1}
-            3. TEXMFHOME
-                 {2}
-            4. Manual location
-            
-            5. Exit without installing
-          '''.format(*[x if x else '<INVALID>' for x in texmf_vars])
+#texmf_vars = [texmf_dist, texmf_local, texmf_home]
 
-if any(texmf_vars):
-    path_choice = ''
-    while (path_choice not in ('1', '2', '3', '4', '5') or 
-            (int(path_choice) <= 3 and not texmf_vars[int(path_choice)-1])):
-        print(textwrap.dedent(message))
-        path_choice = input('Installation location (number):  ')
-        if path_choice == '':
-            sys.exit()
-    if path_choice == '1':
-        texmf_path = texmf_dist
-    elif path_choice == '2':
-        texmf_path = texmf_local
-    elif path_choice == '3':
-        texmf_path = texmf_home
-    elif path_choice == '4':
-        texmf_path = input('Enter a path:\n')
-        if texmf_path == '':
-            sys.exit()
-        if platform.system() == 'Windows':
-            if 'texlive' in texmf_path.lower():
-                detected_texdist = True
-                texlive = True
-                miktex = False
-            elif 'miktex' in texmf_path.lower():
-                detected_texdist = True
-                texlive = False
-                miktex = True
-    else:
-        sys.exit()
-else:
-    print('Failed to detect possible installation locations automatically.')
-    print('TEXMF paths could not be located with kpsewhich.')
-    texmf_path = input('Plese enter an installation path, or press "Enter" to exit:\n')
-    if texmf_path == '':
-        sys.exit()
+path_choice == '1':
+texmf_path = texmf_dist
 
 # Make sure path slashes are compatible with the operating system
 # Kpathsea returns forward slashes, but Windows needs back slashes
