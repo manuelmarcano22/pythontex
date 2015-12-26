@@ -26,7 +26,6 @@ symlink (Linux and OS X) for launching the main PythonTeX scripts,
 `pythontex*.py` and `depythontex*.py`.  Under MiKTeX, it attempts to create
 a batch file in `miktex/bin`.
 
-
 Copyright (c) 2012-2014, Geoffrey M. Poore
 All rights reserved.
 Licensed under the BSD 3-Clause License:
@@ -143,7 +142,7 @@ else:
 # Get installation location from user
 #texmf_vars = [texmf_dist, texmf_local, texmf_home]
 
-path_choice == '1':
+path_choice = '1'
 texmf_path = texmf_dist
 
 # Make sure path slashes are compatible with the operating system
